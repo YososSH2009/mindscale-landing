@@ -277,6 +277,11 @@
   .mission b{color:var(--blue-deep)}
   .todo-badge{display:inline-block;background:rgba(230,126,34,.12);color:var(--gold);border:1px dashed var(--gold-bright);
     padding:8px 16px;border-radius:10px;font-size:.85rem;font-weight:700;margin-top:8px}
+  .about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:820px;margin:46px auto 40px}
+  @media(max-width:680px){.about-stats{grid-template-columns:1fr}}
+  .about-story{max-width:760px;margin:0 auto;text-align:center}
+  .about-story p{font-size:clamp(1.05rem,2.8vw,1.22rem);color:var(--ink-soft);font-weight:500;margin-bottom:16px;line-height:1.6}
+  .about-story p b{color:var(--blue-deep);font-weight:700}
 
   /* ===== Final CTA / form ===== */
   .cta-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
@@ -508,33 +513,19 @@
     <div class="center reveal">
       <span class="tag" data-edit>מי אנחנו</span>
       <h2 class="title" data-edit>אז מי בכלל <span class="em-blue">מעז לבנות מודל כזה?</span></h2>
-      <p class="lead-line" data-edit>שני אנשים שמאסו במשחק הישן — והחליטו לשנות את הכללים.</p>
-      <span class="todo-badge">⚠️ להשלמה: שם השותף, התמחויות והישגים</span>
+      <p class="lead-line" data-edit>צוות שמאס במשחק הישן — והחליט לשנות את הכללים.</p>
     </div>
 
-    <div class="founders">
-      <div class="founder reveal d1">
-        <div class="avatar">י</div>
-        <h3 data-edit>יוסי שקרוף</h3>
-        <div class="role" data-edit>מומחה ממומן וסקייל</div>
-        <ul>
-          <li data-edit>הישג ספציפי 1 (להשלמה)</li>
-          <li data-edit>הישג ספציפי 2 (להשלמה)</li>
-          <li data-edit>הישג ספציפי 3 (להשלמה)</li>
-        </ul>
-        <p class="sum" data-edit>שורת סיכום — מה הוא עושה הכי טוב.</p>
-      </div>
-      <div class="founder reveal d2">
-        <div class="avatar">?</div>
-        <h3 data-edit>שם השותף</h3>
-        <div class="role" data-edit>מומחה משפכים ואסטרטגיה</div>
-        <ul>
-          <li data-edit>הישג ספציפי 1 (להשלמה)</li>
-          <li data-edit>הישג ספציפי 2 (להשלמה)</li>
-          <li data-edit>הישג ספציפי 3 (להשלמה)</li>
-        </ul>
-        <p class="sum" data-edit>שורת סיכום — מה הוא עושה הכי טוב.</p>
-      </div>
+    <div class="about-stats">
+      <div class="stat reveal d1"><div class="num"><span class="count" data-target="200">0</span><span class="suf">+</span></div><div class="lbl" data-edit>עסקים שכבר ליווינו</div></div>
+      <div class="stat reveal d2"><div class="num"><span class="count" data-target="7">0</span></div><div class="lbl" data-edit>שנות ניסיון מצטבר בשטח</div></div>
+      <div class="stat reveal d3"><div class="num"><span class="count" data-target="1">0</span></div><div class="lbl" data-edit>המודל היחיד בישראל שמרוויח רק כשאתם גדלים</div></div>
+    </div>
+
+    <div class="about-story reveal">
+      <p data-edit>במשך שנים ראינו את אותו דפוס שוב ושוב: בעלי עסקים משלמים אלפי שקלים בחודש לסוכנויות שלא באמת אכפת להן מהתוצאה. ריטיינרים גבוהים, התחייבות אפס, אחריות אפס.</p>
+      <p data-edit>אז החלטנו לעשות את זה הפוך — <b>שותפים אמיתיים שנכנסים פנימה לעסק שלכם</b>: מהתמחור, דרך תהליכי המכירה, ועד לקוחות חוזרים. לא עוד סוכנות שמריצה קמפיינים ונעלמת.</p>
+      <p data-edit>הבידול שלנו פשוט: <b>מודל צמיחה WIN-WIN — אנחנו מרוויחים רק כשאתם מרוויחים.</b> מאחורינו צוות עם 7 שנות ניסיון בשטח, על גב יותר מ-200 עסקים.</p>
     </div>
 
     <p class="mission reveal" data-edit>שנינו ראינו את אותה בעיה מבפנים. סוכנויות שמרוויחות בלי קשר לתוצאה. אז יצרנו את ההפך הגמור — <b>סוכנות שמרוויחה רק כשאתם גדלים.</b></p>
