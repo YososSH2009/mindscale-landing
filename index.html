@@ -336,10 +336,11 @@
 
   /* ===== Inline editor toolbar ===== */
   #edbar{
-    position:fixed;bottom:22px;left:22px;z-index:999;display:flex;gap:10px;
+    position:fixed;bottom:22px;left:22px;z-index:999;display:none;gap:10px;
     background:rgba(1,24,47,.95);padding:10px;border-radius:60px;box-shadow:0 12px 34px rgba(0,0,0,.4);
     backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12);
   }
+  #edbar.show{display:flex}
   #edbar button{
     width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;font-size:1.2rem;
     background:rgba(255,255,255,.1);color:#fff;display:flex;align-items:center;justify-content:center;
@@ -347,6 +348,9 @@
   }
   #edbar button:hover{transform:scale(1.1);background:rgba(255,255,255,.2)}
   #edbar button.active{background:linear-gradient(135deg,var(--gold-bright),var(--gold))}
+  #edbar #edToggle{width:auto;border-radius:30px;padding:0 20px;gap:8px;font-size:1rem;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--blue),var(--blue-deep))}
+  #edbar #edToggle:hover{transform:translateY(-2px);background:linear-gradient(135deg,var(--blue),var(--blue-deep));filter:brightness(1.1)}
+  #edbar #edToggle.active{background:linear-gradient(135deg,var(--gold-bright),var(--gold))}
   #edbar .lbl{position:absolute;top:-34px;left:50%;transform:translateX(-50%);background:#000;color:#fff;font-size:.72rem;padding:4px 10px;border-radius:6px;white-space:nowrap;opacity:0;transition:opacity .2s;pointer-events:none}
   body.editing [data-edit]{outline:2px dashed rgba(0,123,255,.6);outline-offset:3px;border-radius:4px;cursor:text;transition:background .2s}
   body.editing [data-edit]:hover{background:rgba(0,123,255,.06)}
@@ -582,7 +586,7 @@
 
 <!-- ===================== עורך טקסט אינליין ===================== -->
 <div id="edbar">
-  <button id="edToggle" title="עריכת טקסט">✏️</button>
+  <button id="edToggle" title="עריכת טקסט"><span>✏️</span><span class="t">ערוך טקסט</span></button>
   <button id="edSave" title="שמירה">💾</button>
   <button id="edReset" title="איפוס">↺</button>
 </div>
@@ -628,11 +632,16 @@ function toast(msg){const t=document.getElementById('edtoast');t.textContent=msg
 function loadEdits(){try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');editables.forEach(el=>{if(s[el.dataset.k]!=null)el.innerHTML=s[el.dataset.k];});}catch(e){}}
 function saveEdits(){const s={};editables.forEach(el=>s[el.dataset.k]=el.innerHTML);localStorage.setItem(KEY,JSON.stringify(s));toast('✔ השינויים נשמרו');}
 loadEdits();
+/* מצב עריכה מוצג רק לבעלי הדף — דרך ?edit=1 בכתובת. מבקרים רגילים רואים דף נקי. */
+const editMode=/[?&#]edit=1\b/.test(location.search+location.hash);
+if(editMode)document.getElementById('edbar').classList.add('show');
 let editing=false;
-document.getElementById('edToggle').addEventListener('click',function(){
+const edToggle=document.getElementById('edToggle'), edToggleLbl=edToggle.querySelector('.t');
+edToggle.addEventListener('click',function(){
   editing=!editing;document.body.classList.toggle('editing',editing);this.classList.toggle('active',editing);
   editables.forEach(el=>el.contentEditable=editing);
-  toast(editing?'✏️ מצב עריכה פעיל — לחץ על טקסט כדי לשנות':'מצב עריכה כבוי');
+  if(edToggleLbl)edToggleLbl.textContent=editing?'סיום עריכה':'ערוך טקסט';
+  toast(editing?'✏️ מצב עריכה פעיל — לחץ על טקסט כדי לשנות (נשמר בדפדפן שלך בלבד)':'מצב עריכה כבוי');
 });
 document.getElementById('edSave').addEventListener('click',saveEdits);
 document.getElementById('edReset').addEventListener('click',function(){
