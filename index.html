@@ -338,14 +338,16 @@
   .statbar{display:flex;flex-wrap:wrap;justify-content:center;margin-top:48px}
   .statbar-item{flex:1 1 0;min-width:140px;text-align:center;padding:16px 18px}
   .statbar-item:not(:last-child){border-inline-end:1px solid var(--line)}
-  .statbar-item .num{font-size:clamp(2rem,5vw,3rem);font-weight:800;color:var(--blue);line-height:1;letter-spacing:-.02em}
+  .statbar-item .num{font-size:clamp(2rem,5vw,3rem);font-weight:800;color:#4d97e6;line-height:1;letter-spacing:-.02em}
   .statbar-item .lbl{margin-top:10px;color:var(--ink-soft);font-weight:600;font-size:1rem}
   @media(max-width:760px){.statbar-item{flex-basis:40%;border-inline-end:none;margin-bottom:18px}}
 
   /* ===== Pain section (סגנון תמונה 5ע) ===== */
   .sec-dark{background:#23262b;color:#fff}
-  .pain-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:50px;align-items:center}
-  @media(max-width:880px){.pain-grid{grid-template-columns:1fr;gap:34px}}
+  .pain-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center}
+  .pain-grid .pain-copy{grid-column:1}
+  .pain-grid .pain-chart{grid-column:2}
+  @media(max-width:880px){.pain-grid{grid-template-columns:1fr;gap:34px}.pain-grid .pain-copy,.pain-grid .pain-chart{grid-column:auto}}
   .pain-chart{background:#1a1c20;border:1px solid #31363f;border-radius:20px;padding:30px 26px 24px;box-shadow:0 18px 50px rgba(0,0,0,.3)}
   .chart{display:flex;align-items:flex-end;gap:16px;height:250px}
   .barcol{flex:1;display:flex;align-items:flex-end;justify-content:center;height:100%}
@@ -664,9 +666,12 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 const cio=new IntersectionObserver((ents)=>{
   ents.forEach(e=>{
     if(!e.isIntersecting)return;
-    const el=e.target,target=+el.dataset.target;let cur=0;
-    const step=Math.max(1,Math.ceil(target/40));
-    const t=setInterval(()=>{cur+=step;if(cur>=target){cur=target;clearInterval(t);}el.textContent=cur;},28);
+    const el=e.target,target=+el.dataset.target,dur=1500,t0=performance.now();
+    (function tick(now){
+      const p=Math.min(1,(now-t0)/dur),eased=1-Math.pow(1-p,3);
+      el.textContent=Math.round(target*eased);
+      if(p<1)requestAnimationFrame(tick);
+    })(t0);
     cio.unobserve(el);
   });
 },{threshold:.6});
