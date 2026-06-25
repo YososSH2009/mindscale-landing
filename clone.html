@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MindScale | סוכנות שמרוויחה רק כשאתם גדלים — מודל WIN-WIN</title>
+<meta name="description" content="שיחת אסטרטגיה בחינם: איך להגדיל את העסק שלכם במודל WIN-WIN — אנחנו מרוויחים רק מהצמיחה שאנחנו יוצרים." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#007BFF; --blue-light:#3d93f0; --blue-deep:#0061cc; --navy:#0c1322; --navy2:#070b14;
+    --ink:#15202e; --ink-soft:#5a6675; --line:#e6e9ee; --gold:#bd7114; --gold-bright:#E67E22;
+    --red:#ea3e4e; --bg-light:#F8F9FA; --white:#fff; --maxw:1180px; --sp:clamp(54px,7vw,88px);
+    --shadow-sm:0 4px 18px rgba(1,34,68,.06); --shadow-md:0 18px 50px rgba(1,34,68,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;direction:rtl}
+  body{font-family:"Assistant",Arial,sans-serif;background:var(--bg-light);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3{line-height:1.15;font-weight:800;letter-spacing:-.01em}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .hl{color:var(--blue-light)}
+  .hl-gold{color:var(--gold-bright)}
+
+  /* ===== Buttons ===== */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:inherit;font-weight:800;
+    font-size:clamp(1.02rem,2.4vw,1.18rem);padding:17px 36px;border:none;border-radius:60px;cursor:pointer;color:#fff;
+    background:var(--blue);box-shadow:0 14px 34px rgba(0,123,255,.4);text-decoration:none;transition:transform .25s,box-shadow .25s,filter .25s}
+  .btn:hover{transform:translateY(-3px);filter:brightness(1.07);box-shadow:0 20px 44px rgba(0,123,255,.5)}
+  .btn .hand{animation:wave 2.2s ease-in-out infinite;transform-origin:80% 80%;display:inline-block}
+  @keyframes wave{0%,60%,100%{transform:rotate(0)}10%{transform:rotate(16deg)}20%{transform:rotate(-8deg)}30%{transform:rotate(16deg)}40%{transform:rotate(-4deg)}50%{transform:rotate(10deg)}}
+
+  /* ===== Header ===== */
+  header{position:sticky;top:0;z-index:50;background:rgba(10,15,28,.0);transition:.35s;padding:16px 0}
+  header.scrolled{background:rgba(10,15,28,.94);backdrop-filter:blur(12px);box-shadow:0 6px 24px rgba(0,0,0,.3);padding:11px 0}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:1.4rem;color:#fff;letter-spacing:-.02em}
+  .logo .dot{width:11px;height:11px;border-radius:50%;background:linear-gradient(135deg,var(--gold-bright),var(--gold));box-shadow:0 0 14px var(--gold-bright)}
+  .nav .htext{color:#aebacb;font-size:.95rem;font-weight:500;margin-inline-start:auto;margin-inline-end:16px}
+  @media(max-width:760px){.nav .htext{display:none}}
+  .nav .btn{padding:10px 22px;font-size:.95rem;box-shadow:0 8px 22px rgba(0,123,255,.4)}
+
+  /* ===== HERO ===== */
+  .hero{position:relative;color:#fff;text-align:center;padding:clamp(30px,5vw,56px) 0 clamp(56px,8vw,90px);
+    background:radial-gradient(1100px 540px at 50% -10%,rgba(0,123,255,.28),transparent 60%),linear-gradient(180deg,var(--navy),var(--navy2));overflow:hidden}
+  .hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:54px 54px;mask-image:radial-gradient(circle at 50% 20%,#000,transparent 70%);opacity:.6;pointer-events:none}
+  .hero .wrap{position:relative;z-index:2}
+  .hero .eyebrow{color:#9fb1c9;font-size:clamp(.9rem,2.3vw,1.05rem);font-weight:500;margin-bottom:18px}
+  .hero h1{font-size:clamp(1.9rem,5.2vw,3.4rem);font-weight:800;line-height:1.18;max-width:880px;margin:0 auto 18px}
+  .hero .sub{color:#9fb1c9;font-size:clamp(.98rem,2.4vw,1.15rem);max-width:680px;margin:0 auto 30px;font-weight:500}
+
+  /* video block */
+  .video-row{display:flex;align-items:center;justify-content:center;gap:18px;margin:0 auto 30px;max-width:1000px}
+  .video-side{flex:1;display:flex;flex-direction:column;gap:12px}
+  @media(max-width:860px){.video-side{display:none}}
+  .proof-mini{background:#fff;border-radius:12px;height:96px;box-shadow:0 10px 30px rgba(0,0,0,.35);position:relative;overflow:hidden;opacity:.92}
+  .proof-mini:after{content:"📲 צילום תוצאה";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#9aa3b2;font-size:.8rem;font-weight:600}
+  .video-main{flex:0 0 auto;width:min(520px,86vw)}
+  .video-box{position:relative;border-radius:18px;overflow:hidden;background:linear-gradient(135deg,#1c2740,#0e1626);aspect-ratio:16/10;box-shadow:0 26px 70px rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center}
+  .video-box .topbar{position:absolute;top:0;left:0;right:0;height:34px;background:var(--blue);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem;font-weight:700}
+  .play{width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,.4);transition:transform .2s}
+  .play:hover{transform:scale(1.08)}
+  .play:after{content:"";border-style:solid;border-width:14px 0 14px 22px;border-color:transparent transparent transparent var(--blue);margin-inline-start:5px}
+  .video-cap{color:#7e8ba0;font-size:.82rem;margin-top:10px}
+
+  .cta-pill{margin-top:6px}
+  .avatars{display:flex;align-items:center;justify-content:center;margin-top:22px}
+  .avatars .av{width:42px;height:42px;border-radius:50%;border:3px solid var(--navy);margin-inline-start:-12px;background:linear-gradient(135deg,#2a3a5c,#46597f);box-shadow:0 3px 10px rgba(0,0,0,.4)}
+  .avatars .av:first-child{margin-inline-start:0}
+  .avatars .avtext{color:#9fb1c9;font-size:.85rem;font-weight:600;margin-inline-start:14px}
+
+  /* ===== generic section ===== */
+  section.block{padding:var(--sp) 0;position:relative}
+  .sec-light{background:var(--bg-light)} .sec-white{background:#fff}
+  .sec-dark{background:linear-gradient(180deg,#141a28,#0e1320);color:#fff}
+  h2.title{font-size:clamp(1.8rem,5vw,2.8rem);text-align:center;margin-bottom:12px}
+  .sec-dark h2.title{color:#fff}
+
+  /* ===== Stat bar ===== */
+  .statbar{display:flex;flex-wrap:wrap;justify-content:center}
+  .statbar-item{flex:1 1 0;min-width:130px;text-align:center;padding:16px 16px}
+  .statbar-item:not(:last-child){border-inline-end:1px solid var(--line)}
+  .statbar-item .num{font-size:clamp(1.9rem,4.6vw,2.9rem);font-weight:800;color:#4d97e6;line-height:1;letter-spacing:-.02em}
+  .statbar-item .lbl{margin-top:9px;color:var(--ink-soft);font-weight:600;font-size:.95rem}
+  @media(max-width:760px){.statbar-item{flex-basis:40%;border-inline-end:none;margin-bottom:16px}}
+
+  /* ===== reveal ===== */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.btn .hand{animation:none}}
+
+  /* ===== Pain (dark) ===== */
+  .pain-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+  .pain-grid .pain-copy{grid-column:1}.pain-grid .pain-chart{grid-column:2}
+  @media(max-width:880px){.pain-grid{grid-template-columns:1fr;gap:30px}.pain-grid .pain-copy,.pain-grid .pain-chart{grid-column:auto}}
+  .pain-chart{background:#0e131f;border:1px solid #29303f;border-radius:20px;padding:28px 24px 22px;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+  .chart{display:flex;align-items:flex-end;gap:14px;height:230px}
+  .barcol{flex:1;display:flex;align-items:flex-end;justify-content:center;height:100%}
+  .bar{width:100%;max-width:60px;border-radius:8px 8px 0 0;background:linear-gradient(180deg,#5b6473,#343c4b)}
+  .bar.red{background:linear-gradient(180deg,#ff5a5f,#d62b30)}
+  .caps{display:flex;gap:14px;margin-top:12px}.caps .cap{flex:1;text-align:center;color:#9aa6b6;font-size:.78rem;font-weight:600;line-height:1.3}.caps .cap.red{color:#ff6b6f}
+  .pain-eyebrow{color:#9fb1c9;font-size:clamp(1rem,2.5vw,1.2rem);margin-bottom:10px}
+  .pain-head{font-size:clamp(1.6rem,4.4vw,2.5rem);font-weight:800;line-height:1.2;margin-bottom:20px;color:#fff}
+  .pain-head .mark{background:linear-gradient(transparent 60%,rgba(214,43,48,.5) 60%);padding:0 4px}
+  .pain-p{color:#cdd5e0;font-size:clamp(1rem,2.5vw,1.12rem);line-height:1.6;margin-bottom:14px}
+  .pain-p b{color:#fff}.pain-u{text-decoration:underline;text-decoration-color:#ff5a5f;text-decoration-thickness:3px;text-underline-offset:4px;color:#fff;font-weight:700}
+  .pain-close{font-size:clamp(1.1rem,3vw,1.35rem);font-weight:800;color:#fff;margin-top:4px}.pain-close .hl-gold{color:var(--gold-bright)}
+
+  /* ===== Fault / text+image ===== */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  @media(max-width:860px){.split{grid-template-columns:1fr;gap:30px}}
+  .split .txt p{font-size:clamp(1.02rem,2.6vw,1.18rem);color:var(--ink-soft);margin-bottom:14px;font-weight:500}
+  .split .txt b{color:var(--ink)} .mark-r{background:linear-gradient(transparent 60%,#ffd9d9 60%);font-weight:700;color:var(--ink)}
+  .img-ph{background:linear-gradient(135deg,#dbe6f5,#eef3f9);border-radius:18px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#8aa0bd;font-weight:700;box-shadow:var(--shadow-md);border:1px solid var(--line)}
+
+  /* ===== Way pills ===== */
+  .pills{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;max-width:900px;margin:30px auto 0}
+  .pill{background:var(--blue);color:#fff;font-weight:700;padding:14px 22px;border-radius:40px;font-size:clamp(.95rem,2.3vw,1.08rem);box-shadow:0 8px 22px rgba(0,123,255,.28)}
+  .pill.alt{background:#eaf2fe;color:var(--blue-deep)}
+
+  /* ===== Proof cards ===== */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
+  @media(max-width:860px){.cards{grid-template-columns:1fr}}
+  .pcard{background:var(--blue);color:#fff;border-radius:18px;padding:26px;box-shadow:0 16px 40px rgba(0,123,255,.25)}
+  .pcard .ph{background:rgba(255,255,255,.92);border-radius:12px;height:150px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;color:#90a0b5;font-weight:600;font-size:.85rem}
+  .pcard h3{font-size:1.25rem;margin-bottom:6px}.pcard p{font-size:.98rem;opacity:.95}
+
+  /* ===== Steps (numbered) ===== */
+  .steps{max-width:760px;margin:34px auto 0;display:flex;flex-direction:column;gap:14px}
+  .step{display:flex;align-items:center;gap:16px;background:var(--blue);color:#fff;border-radius:14px;padding:18px 22px;box-shadow:0 8px 22px rgba(0,123,255,.22)}
+  .step .sn{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:#fff;color:var(--blue-deep);display:flex;align-items:center;justify-content:center;font-weight:800}
+  .step p{font-weight:700;font-size:clamp(1rem,2.4vw,1.12rem)}
+
+  /* ===== Stages (dark) ===== */
+  .stages{max-width:820px;margin:34px auto 0;display:flex;flex-direction:column;gap:16px}
+  .stage{display:flex;align-items:flex-start;gap:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:22px 24px}
+  .stage .ic{flex:0 0 auto;width:52px;height:52px;border-radius:13px;background:linear-gradient(135deg,var(--blue),var(--blue-deep));display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+  .stage h3{color:#fff;font-size:1.2rem;margin-bottom:4px}.stage p{color:#aeb9c9;font-size:1rem;font-weight:500}
+
+  /* ===== Qualifier two-col ===== */
+  .qual{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:920px;margin:30px auto 0}
+  @media(max-width:760px){.qual{grid-template-columns:1fr}}
+  .qcol{border-radius:18px;padding:28px;box-shadow:var(--shadow-md)}
+  .qcol.yes{background:var(--blue);color:#fff}.qcol.no{background:#15202e;color:#fff}
+  .qcol h3{font-size:1.35rem;margin-bottom:16px}
+  .qcol ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .qcol li{display:flex;gap:10px;font-weight:500;font-size:1rem;line-height:1.4}
+  .qcol.yes li:before{content:"✔";font-weight:800}.qcol.no li:before{content:"✕";color:#ff6b6f;font-weight:800}
+
+  /* ===== Founder ===== */
+  .founder-split{display:grid;grid-template-columns:.8fr 1.2fr;gap:46px;align-items:center}
+  @media(max-width:860px){.founder-split{grid-template-columns:1fr;gap:28px;text-align:center}}
+  .founder-photo{background:linear-gradient(135deg,#1c2740,#0e1626);border-radius:20px;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;color:#6b7a92;font-weight:700;box-shadow:var(--shadow-md)}
+  .founder-txt h2{text-align:right;font-size:clamp(1.6rem,4.4vw,2.5rem);margin-bottom:16px}
+  @media(max-width:860px){.founder-txt h2{text-align:center}}
+  .founder-txt p{color:var(--ink-soft);font-size:clamp(1rem,2.5vw,1.15rem);margin-bottom:14px;font-weight:500}.founder-txt b{color:var(--ink)}
+
+  /* ===== Team ===== */
+  .team{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;max-width:920px;margin:34px auto 0;background:#fff;border-radius:24px;padding:40px;box-shadow:var(--shadow-md)}
+  @media(max-width:760px){.team{grid-template-columns:repeat(2,1fr);padding:26px;gap:18px}}
+  .member{text-align:center}
+  .member .ava{width:96px;height:96px;border-radius:50%;margin:0 auto 12px;background:linear-gradient(135deg,#2a3a5c,#46597f);border:3px solid #cfe0f5;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1.6rem}
+  .member h3{font-size:1.15rem;color:var(--ink)}.member span{color:var(--ink-soft);font-size:.92rem}
+
+  /* ===== FAQ ===== */
+  .faq{max-width:760px;margin:30px auto 0;display:flex;flex-direction:column;gap:12px}
+  .qa{background:#15202e;color:#fff;border-radius:12px;overflow:hidden}
+  .qa q{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 22px;cursor:pointer;font-weight:700;font-size:1.05rem;quotes:none}
+  .qa .ar{transition:transform .3s;flex:0 0 auto}
+  .qa.open .ar{transform:rotate(90deg)}
+  .qa .ans{max-height:0;overflow:hidden;transition:max-height .35s ease;color:#aeb9c9;font-weight:500}
+  .qa .ans p{padding:0 22px 18px}
+
+  /* ===== CTA form ===== */
+  .cta-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+  @media(max-width:900px){.cta-grid{grid-template-columns:1fr;gap:28px}}
+  .cta-copy .opener{font-size:clamp(1.5rem,4.2vw,2.1rem);font-weight:800;margin-bottom:16px;color:#fff}
+  .cta-copy .frame{color:#c3d3ea;font-size:clamp(1rem,2.6vw,1.15rem);margin-bottom:20px;font-weight:500}.cta-copy .frame b{color:#fff}
+  .form-card{background:#fff;border-radius:20px;padding:32px 28px;box-shadow:0 30px 70px rgba(0,0,0,.35)}
+  .form-card h3{text-align:center;color:var(--ink);font-size:1.4rem;margin-bottom:6px}
+  .form-card .fsub{text-align:center;color:var(--ink-soft);margin-bottom:20px;font-weight:500}
+  .field{margin-bottom:14px}.field label{display:block;font-weight:700;color:var(--ink);margin-bottom:6px;font-size:.92rem}
+  .field input,.field select{width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:11px;font-family:inherit;font-size:1rem;background:var(--bg-light);direction:rtl;text-align:right}
+  .field input[type=tel]{direction:ltr;text-align:right}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,123,255,.12);background:#fff}
+  .form-card .btn{width:100%}
+  .scarcity{text-align:center;margin-top:16px;color:var(--ink-soft);font-weight:600;font-size:.9rem}.scarcity b{color:var(--gold)}
+  .form-success{display:none;text-align:center;padding:28px 10px}.form-success .ok{font-size:2.6rem}
+
+  /* ===== editor ===== */
+  #edbar{position:fixed;bottom:22px;left:22px;z-index:999;display:none;gap:10px;background:rgba(10,15,28,.95);padding:10px;border-radius:60px;box-shadow:0 12px 34px rgba(0,0,0,.4);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12)}
+  #edbar.show{display:flex}
+  #edbar button{width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;font-size:1.2rem;background:rgba(255,255,255,.1);color:#fff;display:flex;align-items:center;justify-content:center;transition:.2s}
+  #edbar #edToggle{width:auto;border-radius:30px;padding:0 20px;gap:8px;font-size:1rem;font-weight:800;background:var(--blue)}
+  body.editing [data-edit]{outline:2px dashed rgba(0,123,255,.6);outline-offset:3px;cursor:text}
+  #edtoast{position:fixed;bottom:84px;left:22px;z-index:999;background:var(--blue-deep);color:#fff;padding:12px 20px;border-radius:12px;font-weight:700;opacity:0;transition:.3s}
+  #edtoast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header id="hdr">
+  <div class="wrap nav">
+    <div class="logo"><span class="dot"></span><b data-edit>MindScale</b></div>
+    <span class="htext" data-edit>הצעד הראשון לצמיחה הבאה שלכם מתחיל בשיחת התאמה חינם</span>
+    <a href="#apply" class="btn" data-edit>בואו נדבר</a>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow reveal" data-edit>לנותני שירות, מאמנים ויוצרי קורסים שכבר עושים 50,000 ₪+ בחודש מאינסטגרם</p>
+    <h1 class="reveal d1" data-edit>שיחת אסטרטגיה בחינם: איך להגדיל את העסק שלכם עם סוכנות <span class="hl">שמרוויחה רק כשאתם גדלים</span></h1>
+    <p class="sub reveal d1" data-edit>גם אם כבר עברתם קמפיינרים או סוכנויות — ושילמתם הון בלי לראות תוצאות.</p>
+
+    <div class="video-row reveal d2">
+      <div class="video-side"><div class="proof-mini"></div><div class="proof-mini"></div></div>
+      <div class="video-main">
+        <div class="video-box">
+          <div class="topbar" data-edit>▶ צפו בסרטון קצר — 2 דקות</div>
+          <div class="play"></div>
+        </div>
+        <div class="video-cap" data-edit>סרטון הסבר על מודל ה-WIN-WIN (placeholder)</div>
+      </div>
+      <div class="video-side"><div class="proof-mini"></div><div class="proof-mini"></div></div>
+    </div>
+
+    <a href="#apply" class="btn cta-pill reveal d2" data-edit>לתיאום שיחת התאמה בחינם — לחצו כאן <span class="hand">✋🏻</span></a>
+
+    <div class="avatars reveal d3">
+      <span class="av"></span><span class="av"></span><span class="av"></span><span class="av"></span><span class="av"></span><span class="av"></span>
+      <span class="avtext" data-edit>עסקים שכבר עושים 50K+ בחודש בוחרים לצמוח איתנו</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== שורת מספרים ===================== -->
+<section class="block sec-light">
+  <div class="wrap">
+    <div class="statbar">
+      <div class="statbar-item reveal d1"><div class="num"><span class="count" data-target="7">0</span>x</div><div class="lbl" data-edit>החזר ממוצע</div></div>
+      <div class="statbar-item reveal d1"><div class="num">+<span class="count" data-target="30">0</span>M</div><div class="lbl" data-edit>הכנסה ללקוחות</div></div>
+      <div class="statbar-item reveal d2"><div class="num">+<span class="count" data-target="4">0</span>M</div><div class="lbl" data-edit>תקציב שניהלנו</div></div>
+      <div class="statbar-item reveal d2"><div class="num">+<span class="count" data-target="3">0</span></div><div class="lbl" data-edit>שנות פעילות</div></div>
+      <div class="statbar-item reveal d3"><div class="num">+<span class="count" data-target="20">0</span></div><div class="lbl" data-edit>תחומים שונים</div></div>
+      <div class="statbar-item reveal d3"><div class="num">+<span class="count" data-target="100">0</span></div><div class="lbl" data-edit>לקוחות בסוכנות</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== כאב ===================== -->
+<section class="block sec-dark">
+  <div class="wrap pain-grid">
+    <div class="pain-chart reveal">
+      <div class="chart">
+        <div class="barcol"><div class="bar red" style="height:94%"></div></div>
+        <div class="barcol"><div class="bar" style="height:72%"></div></div>
+        <div class="barcol"><div class="bar" style="height:55%"></div></div>
+        <div class="barcol"><div class="bar" style="height:18%"></div></div>
+      </div>
+      <div class="caps"><span class="cap red">מה שאתם משלמים</span><span class="cap">הבטחות</span><span class="cap">דוחות</span><span class="cap">צמיחה אמיתית</span></div>
+    </div>
+    <div class="pain-copy">
+      <p class="pain-eyebrow reveal" data-edit>אם אתה כבר לא חדש בעולם העסקים,</p>
+      <h2 class="pain-head reveal d1" data-edit>כנראה שכבר עברת קמפיינר או שניים — <span class="mark">ואולי גם סוכנות שלמה.</span></h2>
+      <p class="pain-p reveal d2" data-edit>ומה שאנחנו שומעים בדרך כלל? ששילמת <b>אלפי שקלים בחודש</b> — וקיבלת בעיקר דוחות, גרפים ו"אופטימיזציות".</p>
+      <p class="pain-p reveal d2" data-edit>הקמפיינר עבד. הסוכנות גבתה. <span class="pain-u">ואתה? נשארת עם אותו מחזור</span> — ועם תירוץ חדש בכל פגישה.</p>
+      <p class="pain-p reveal d3" data-edit>כי במודל הישן הם מרוויחים <span class="pain-u">בין אם גדלת ובין אם לא</span>.</p>
+      <p class="pain-close reveal d3" data-edit>וזה בדיוק מה שיצאנו לשבור. <span class="hl-gold">אם אתה לא גדל — אנחנו לא מרוויחים.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== זאת לא אשמתך ===================== -->
+<section class="block sec-light">
+  <div class="wrap split">
+    <div class="txt reveal">
+      <h2 class="title" style="text-align:right" data-edit>אבל זאת לא אשמתך.</h2>
+      <p data-edit>שיחקת לפי הכללים הישנים. <span class="mark-r">שילמת ריטיינר קבוע</span> בלי קשר לתוצאה — וקיבלת הבטחות במקום צמיחה.</p>
+      <p data-edit>כי רוב הסוכנויות בנויות להרוויח <span class="mark-r">גם כשאתה לא גדל</span>. אין להן שום סיבה אמיתית לדחוף אותך קדימה.</p>
+      <p data-edit><b>אנחנו בנינו את ההפך הגמור.</b></p>
+    </div>
+    <div class="img-ph reveal d1" data-edit>פגישת אסטרטגיה 🤝</div>
+  </div>
+</section>
+
+<!-- ===================== יש דרך ===================== -->
+<section class="block sec-white">
+  <div class="wrap">
+    <h2 class="title reveal" data-edit>יש דרך שבה עסקים <span class="hl" style="color:var(--blue)">בדיוק כמו שלך</span> גדלים — בלי לקחת סיכון</h2>
+    <div class="pills reveal d1">
+      <span class="pill" data-edit>ריטיינר בסיס נמוך</span>
+      <span class="pill" data-edit>אחוז רק על הצמיחה</span>
+      <span class="pill alt" data-edit>תוכן שממצב אתכם כסמכות</span>
+      <span class="pill alt" data-edit>משפכים שממירים אוטומטית</span>
+      <span class="pill" data-edit>ממומן מבוסס דאטה</span>
+      <span class="pill" data-edit>שותף עם עור במשחק</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== הוכחה (placeholders) ===================== -->
+<section class="block sec-light">
+  <div class="wrap">
+    <h2 class="title reveal" data-edit>זה מה שהלקוחות שלנו מספרים</h2>
+    <div class="cards">
+      <div class="pcard reveal d1"><div class="ph" data-edit>📲 צילום תוצאה</div><h3 data-edit>"מ-50K ל-90K בחודשיים"</h3><p data-edit>עדות לקוח — תתווסף בקרוב.</p></div>
+      <div class="pcard reveal d2"><div class="ph" data-edit>📲 צילום תוצאה</div><h3 data-edit>"סוף סוף סוכנות שאכפת לה"</h3><p data-edit>עדות לקוח — תתווסף בקרוב.</p></div>
+      <div class="pcard reveal d3"><div class="ph" data-edit>📲 צילום תוצאה</div><h3 data-edit>"שילמתי רק על הגדילה"</h3><p data-edit>עדות לקוח — תתווסף בקרוב.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== איך זה עובד (4 צעדים) ===================== -->
+<section class="block sec-white">
+  <div class="wrap">
+    <h2 class="title reveal" data-edit>אז איך זה עובד בתכלס?</h2>
+    <div class="steps">
+      <div class="step reveal d1"><span class="sn">1</span><p data-edit>ממלאים טופס קצר ונקבעת שיחת התאמה</p></div>
+      <div class="step reveal d1"><span class="sn">2</span><p data-edit>בונים יחד תוכנית צמיחה מותאמת לעסק שלך</p></div>
+      <div class="step reveal d2"><span class="sn">3</span><p data-edit>מפעילים את המעטפת: תוכן, משפכים וממומן</p></div>
+      <div class="step reveal d2"><span class="sn">4</span><p data-edit>אתם גדלים — ואנחנו מרוויחים רק מהגדילה</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 5 שלבים ===================== -->
+<section class="block sec-dark">
+  <div class="wrap">
+    <h2 class="title reveal" data-edit>מה קורה ברגע שמתחילים לעבוד יחד</h2>
+    <div class="stages">
+      <div class="stage reveal d1"><span class="ic">🔍</span><div><h3 data-edit>שלב המודיעין</h3><p data-edit>לומדים לעומק את העסק, הקהל והמספרים שלך.</p></div></div>
+      <div class="stage reveal d1"><span class="ic">🎯</span><div><h3 data-edit>שלב האסטרטגיה</h3><p data-edit>בונים תוכנית צמיחה והצעה שקשה לסרב לה.</p></div></div>
+      <div class="stage reveal d2"><span class="ic">🚀</span><div><h3 data-edit>שלב ההפעלה</h3><p data-edit>מפעילים תוכן, משפכים וממומן שעובדים יחד.</p></div></div>
+      <div class="stage reveal d2"><span class="ic">📈</span><div><h3 data-edit>שלב הסקייל</h3><p data-edit>מזהים מה עובד — ומגדילים אגרסיבית.</p></div></div>
+      <div class="stage reveal d3"><span class="ic">🛡️</span><div><h3 data-edit>שלב השותפות</h3><p data-edit>אנחנו על הקו ביחד אתך — כי אנחנו מרוויחים רק כשאתה גדל.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== למי מתאים ===================== -->
+<section class="block sec-light">
+  <div class="wrap">
+    <h2 class="title reveal" data-edit>אבל זה לא מתאים לכל אחד</h2>
+    <div class="qual">
+      <div class="qcol yes reveal d1"><h3 data-edit>זה בשבילך אם...</h3><ul>
+        <li data-edit>אתה כבר עושה 50,000 ₪+ בחודש</li>
+        <li data-edit>יש לך מוצר או שירות טוב</li>
+        <li data-edit>אתה רוצה לצמוח ומוכן להשקיע</li>
+        <li data-edit>אתה מאמין בשותפות אמיתית</li>
+      </ul></div>
+      <div class="qcol no reveal d2"><h3 data-edit>זה לא בשבילך אם...</h3><ul>
+        <li data-edit>אתה מתחת ל-50K בחודש</li>
+        <li data-edit>אתה מחפש פתרון קסם בלי עבודה</li>
+        <li data-edit>אתה לא מוכן לתת לנו לנהל</li>
+        <li data-edit>אתה מחפש את הזול ביותר</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== מייסדים ===================== -->
+<section class="block sec-white">
+  <div class="wrap founder-split">
+    <div class="founder-photo reveal" data-edit>תמונת המייסדים 📸</div>
+    <div class="founder-txt reveal d1">
+      <h2 data-edit>קוראים לנו יוסי וירין — ואנחנו מאחורי MindScale.</h2>
+      <p data-edit>ליווינו עשרות מותגים בישראל והזנקנו אותם ליעדים — מהר. אבל משהו הציק לנו: שילמו לנו אותו דבר, בין אם הלקוח גדל ובין אם לא.</p>
+      <p data-edit><b>אז בנינו מודל אחר — סוכנות שמרוויחה רק כשאתם גדלים.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== צוות ===================== -->
+<section class="block sec-light">
+  <div class="wrap">
+    <h2 class="title reveal" data-edit>תכירו את הצוות</h2>
+    <div class="team reveal d1">
+      <div class="member"><div class="ava">י</div><h3 data-edit>יוסי שקרוף</h3><span data-edit>בעלים</span></div>
+      <div class="member"><div class="ava">י</div><h3 data-edit>ירין</h3><span data-edit>בעלים ואסטרטגיה</span></div>
+      <div class="member"><div class="ava">+</div><h3 data-edit>להשלמה</h3><span data-edit>מנהל/ת קמפיינים</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="block sec-white">
+  <div class="wrap">
+    <h2 class="title reveal" data-edit>שאלות נפוצות</h2>
+    <div class="faq reveal d1">
+      <div class="qa"><q><span data-edit>מה זה בעצם מודל ה-WIN-WIN?</span><span class="ar">‹</span></q><div class="ans"><p data-edit>ריטיינר בסיס נמוך + אחוז קטן (6.5%) רק על הצמיחה שאנחנו יוצרים. לא לוקחים אחוז על המחזור הקיים שלכם.</p></div></div>
+      <div class="qa"><q><span data-edit>כמה זה עולה?</span><span class="ar">‹</span></q><div class="ans"><p data-edit>נדבר על זה בשיחת ההתאמה, לפי המחזור והיעדים של העסק שלך. אין הפתעות.</p></div></div>
+      <div class="qa"><q><span data-edit>מה אתם עושים בפועל?</span><span class="ar">‹</span></q><div class="ans"><p data-edit>מעטפת שיווק מלאה: אסטרטגיה ותוכן, בניית משפכים, וניהול ממומן מבוסס דאטה.</p></div></div>
+      <div class="qa"><q><span data-edit>כמה זמן עד שרואים תוצאות?</span><span class="ar">‹</span></q><div class="ans"><p data-edit>תלוי בעסק, אבל המודל בנוי כך שאנחנו מרוויחים רק כשאתה גדל — אז אנחנו דוחפים מהיום הראשון.</p></div></div>
+      <div class="qa"><q><span data-edit>למי זה מתאים?</span><span class="ar">‹</span></q><div class="ans"><p data-edit>עסקי שירות, קורסים, הכשרות וליווי שעושים 50K+ בחודש ורוצים לצמוח.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA סופי + טופס ===================== -->
+<section class="block sec-dark" id="apply">
+  <div class="wrap cta-grid">
+    <div class="cta-copy reveal">
+      <p class="opener" data-edit>מוכנים לצמוח עם סוכנות שמרוויחה רק כשאתם גדלים?</p>
+      <p class="frame" data-edit>אנחנו לא לוקחים את כולם. כדי לעבוד במודל WIN-WIN, אנחנו צריכים לדעת שנוכל באמת להגדיל אותך. <b>לכן קיימת שיחת התאמה — בחינם, בלי התחייבות.</b></p>
+    </div>
+    <div class="form-card reveal d1">
+      <form id="leadForm" class="lead-form" novalidate>
+        <h3 data-edit>בדקו אם אתם מתאימים</h3>
+        <p class="fsub" data-edit>נשאיר פרטים ונחזור אליכם תוך 24 שעות 👇</p>
+        <div class="field"><label data-edit>שם מלא</label><input type="text" name="name" required placeholder="איך קוראים לך?"></div>
+        <div class="field"><label data-edit>טלפון נייד</label><input type="tel" name="phone" required placeholder="050-0000000"></div>
+        <div class="field"><label data-edit>אימייל</label><input type="email" name="email" required placeholder="name@email.com"></div>
+        <div class="field"><label data-edit>מה המחזור החודשי שלכם היום?</label><select name="revenue" required><option value="" disabled selected>בחרו טווח</option><option>עד 50,000 ₪</option><option>50,000–100,000 ₪</option><option>100,000 ₪ ומעלה</option></select></div>
+        <button type="submit" class="btn" data-edit>רוצה לבדוק אם אני מתאים <span class="hand">✋🏻</span></button>
+      </form>
+      <div class="form-success"><div class="ok">✅</div><h3>קיבלנו! נחזור אליך בהקדם.</h3></div>
+      <p class="scarcity" data-edit>אנחנו פותחים <b>עד 5 לקוחות חדשים בלבד בכל חודש</b>.</p>
+    </div>
+  </div>
+</section>
+
+<footer style="background:var(--navy2);color:#7e93b3;text-align:center;padding:36px 0;font-size:.9rem">
+  <div class="wrap"><div class="logo" style="justify-content:center;margin-bottom:10px"><span class="dot"></span><b>MindScale</b></div>
+  <p data-edit>© 2026 MindScale — מודל ה-WIN-WIN היחיד מסוגו בארץ.</p></div>
+</footer>
+
+<div id="edbar"><button id="edToggle" title="עריכת טקסט"><span>✏️</span><span class="t">ערוך טקסט</span></button><button id="edSave" title="שמירה">💾</button><button id="edExport" title="ייצוא לשליחה אליי">📤</button><button id="edReset" title="איפוס">↺</button></div>
+<div id="edtoast"></div>
+
+<script>
+const hdr=document.getElementById('hdr');addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>40));
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const cio=new IntersectionObserver((es)=>{es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,t=+el.dataset.target,dur=1500,t0=performance.now();(function tick(n){const p=Math.min(1,(n-t0)/dur),k=1-Math.pow(1-p,3);el.textContent=Math.round(t*k);if(p<1)requestAnimationFrame(tick)})(t0);cio.unobserve(el)})},{threshold:.6});
+document.querySelectorAll('.count').forEach(el=>cio.observe(el));
+/* editor */
+const KEY='mindscale_clone_edits_v1';const eds=[...document.querySelectorAll('[data-edit]')];eds.forEach((el,i)=>el.dataset.k='c'+i);
+function toast(m){const t=document.getElementById('edtoast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1700)}
+try{const s=JSON.parse(localStorage.getItem(KEY)||'{}');eds.forEach(el=>{if(s[el.dataset.k]!=null)el.innerHTML=s[el.dataset.k]})}catch(e){}
+if(/[?&#]edit=1\b/.test(location.search+location.hash))document.getElementById('edbar').classList.add('show');
+let editing=false;const tg=document.getElementById('edToggle'),tgl=tg.querySelector('.t');
+tg.addEventListener('click',function(){editing=!editing;document.body.classList.toggle('editing',editing);this.classList.toggle('active',editing);eds.forEach(el=>el.contentEditable=editing);if(tgl)tgl.textContent=editing?'סיום עריכה':'ערוך טקסט';toast(editing?'מצב עריכה פעיל':'מצב עריכה כבוי')});
+document.getElementById('edSave').addEventListener('click',()=>{const s={};eds.forEach(el=>s[el.dataset.k]=el.innerHTML);localStorage.setItem(KEY,JSON.stringify(s));toast('✔ נשמר')});
+document.getElementById('edReset').addEventListener('click',()=>{if(confirm('לאפס?')){localStorage.removeItem(KEY);location.reload()}});
+document.getElementById('edExport').addEventListener('click',async()=>{const s={};eds.forEach(el=>s[el.dataset.k]=el.innerHTML);const txt='MSEDITS::'+JSON.stringify(s);try{await navigator.clipboard.writeText(txt);toast('📤 הועתק! הדבק לי בצ׳אט ואצרוב לקובץ')}catch(e){window.prompt('העתק את הכל ושלח לי בצ׳אט:',txt)}});
+/* FAQ accordion */
+document.querySelectorAll('.qa q').forEach(q=>q.addEventListener('click',()=>{const qa=q.parentElement,a=qa.querySelector('.ans');const open=qa.classList.toggle('open');a.style.maxHeight=open?a.scrollHeight+'px':0}));
+/* form */
+document.querySelectorAll('.lead-form').forEach(f=>f.addEventListener('submit',function(e){e.preventDefault();if(!this.checkValidity()){this.reportValidity();return}console.log('LEAD:',Object.fromEntries(new FormData(this).entries()));this.style.display='none';const ok=this.parentElement.querySelector('.form-success');if(ok)ok.style.display='block'}));
+</script>
+</body>
+</html>

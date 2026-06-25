@@ -497,6 +497,14 @@
           <p class="sub" data-edit>תשאיר פרטים כאן למטה ונחזור אלייך בשעות הקרובות 👇</p>
           <div class="field"><label data-edit>שם מלא</label><input type="text" name="name" required placeholder="איך קוראים לך?"></div>
           <div class="field"><label data-edit>טלפון נייד</label><input type="tel" name="phone" required placeholder="050-0000000"></div>
+          <div class="field"><label data-edit>מה המחזור החודשי שלכם היום?</label>
+            <select name="revenue" required>
+              <option value="" disabled selected>בחרו טווח</option>
+              <option value="<50K">עד 50,000 ₪</option>
+              <option value="50-100K">50,000 – 100,000 ₪</option>
+              <option value="100K+">100,000 ₪ ומעלה</option>
+            </select>
+          </div>
           <label class="consent"><input type="checkbox" required><span data-edit>אני מאשר/ת קבלת תכנים ומסכים/ה לתנאי השימוש ומדיניות הפרטיות.</span></label>
           <button type="submit" class="btn">רוצה לבדוק אם אני מתאים <span class="hand">✋🏻</span></button>
         </form>
@@ -666,6 +674,14 @@
           <p class="sub" data-edit>תשאיר פרטים כאן למטה ונחזור אלייך בשעות הקרובות 👇</p>
           <div class="field"><label data-edit>שם מלא</label><input type="text" name="name" required placeholder="איך קוראים לך?"></div>
           <div class="field"><label data-edit>טלפון נייד</label><input type="tel" name="phone" required placeholder="050-0000000"></div>
+          <div class="field"><label data-edit>מה המחזור החודשי שלכם היום?</label>
+            <select name="revenue" required>
+              <option value="" disabled selected>בחרו טווח</option>
+              <option value="<50K">עד 50,000 ₪</option>
+              <option value="50-100K">50,000 – 100,000 ₪</option>
+              <option value="100K+">100,000 ₪ ומעלה</option>
+            </select>
+          </div>
           <label class="consent"><input type="checkbox" required><span data-edit>אני מאשר/ת קבלת תכנים ומסכים/ה לתנאי השימוש ומדיניות הפרטיות.</span></label>
           <button type="submit" class="btn">רוצה לבדוק אם אני מתאים <span class="hand">✋🏻</span></button>
         </form>
@@ -729,7 +745,9 @@ document.querySelectorAll('.lead-form').forEach(function(form){
     ev.preventDefault();
     if(!this.checkValidity()){this.reportValidity();return;}
     console.log('LEAD:',Object.fromEntries(new FormData(this).entries())); /* כאן מחברים webhook / CRM */
-    window.location.href='thanks'; /* הפניה לשאלון ההתאמה */
+    this.style.display='none';
+    const ok=this.parentElement.querySelector('.form-success');
+    if(ok)ok.style.display='block';
   });
 });
 
@@ -769,5 +787,7 @@ document.getElementById('ms-visibility').addEventListener('click',function(){con
 /* רווחים/הסתרת-סקציות לא נטענים אוטומטית — הקובץ הוא מקור האמת */
 document.getElementById('ms-reset').addEventListener('click',()=>{if(confirm('לאפס את כל השינויים (טקסט + רווחים + סקציות) ולחזור למקור?')){localStorage.removeItem(STORAGE_KEY);localStorage.removeItem(SPACING_KEY);localStorage.removeItem(VISIBILITY_KEY);location.reload();}});
 </script>
+<style>.mapnum{display:inline-block;background:#e11;color:#fff;font:800 13px/1 monospace;padding:3px 6px;border-radius:6px;margin-inline-start:5px;vertical-align:middle;direction:ltr;box-shadow:0 1px 4px rgba(0,0,0,.4)}[data-edit]{outline:1px dashed rgba(225,17,17,.45);outline-offset:2px}</style>
+<script>window.addEventListener('load',function(){var els=document.querySelectorAll('[data-edit]');els.forEach(function(el,i){var b=document.createElement('span');b.className='mapnum';b.textContent='#'+(i+1);el.insertBefore(b,el.firstChild);});var t=document.getElementById('edit-toolbar');if(t)t.style.display='none';});</script>
 </body>
 </html>
