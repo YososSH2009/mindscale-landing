@@ -2,6 +2,18 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8" />
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1538944931350821');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1538944931350821&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>MindScale | מודל ה-WIN-WIN היחיד בארץ — אנחנו מרוויחים רק כשאתם גדלים</title>
 <meta name="description" content="מעטפת שיווק מלאה לעסקי קורסים, הכשרות וליווי. ריטיינר בסיס נמוך + אחוז רק על הצמיחה. אנחנו מרוויחים רק כשאתם גדלים." />
@@ -723,12 +735,24 @@ const cio=new IntersectionObserver((ents)=>{
 },{threshold:.6});
 document.querySelectorAll('.count').forEach(el=>cio.observe(el));
 
-/* ---------- Forms (הירו + CTA) ---------- */
+/* ---------- Forms (הירו + CTA) → CRM + פיקסל + העברת זהות לשאלון ---------- */
+var LEAD_ENDPOINT='https://script.google.com/macros/s/AKfycbxfckSJzM4uwDELtJ68JBkR8apNpgk4ykHbz6nrHXgZhBDMN5QfcLugu_EoAY337mbSzA/exec';
 document.querySelectorAll('.lead-form').forEach(function(form){
   form.addEventListener('submit',function(ev){
     ev.preventDefault();
     if(!this.checkValidity()){this.reportValidity();return;}
-    console.log('LEAD:',Object.fromEntries(new FormData(this).entries())); /* כאן מחברים webhook / CRM */
+    var data=Object.fromEntries(new FormData(this).entries());
+    data.source=(this.id==='leadFormHero')?'טופס ראש העמוד':'טופס תחתית';
+    var p=new URLSearchParams(location.search);
+    var utm=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].map(function(k){return p.get(k);}).filter(Boolean).join(' | ');
+    data.utm=utm||document.referrer||'ישיר';
+    data.stage='ליד';
+    /* שמירת הזהות כדי שהשאלון בעמוד הבא יעשיר את אותה שורה */
+    try{localStorage.setItem('ms_lead',JSON.stringify({name:data.name,phone:data.phone,source:data.source,utm:data.utm}));}catch(e){}
+    /* אירוע פיקסל — ליד נתפס */
+    try{if(window.fbq)fbq('track','Lead',{content_name:data.source});}catch(e){}
+    /* כתיבה מוקדמת ל-CRM (keepalive — נשלח גם תוך כדי המעבר) */
+    try{fetch(LEAD_ENDPOINT,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data)}).catch(function(){});}catch(e){}
     window.location.href='thanks'; /* הפניה לשאלון ההתאמה */
   });
 });
